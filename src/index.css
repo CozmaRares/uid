@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,7 +25,12 @@
     --border: 241 29% 72%;
     --input: var(--border);
     --ring: 241 100% 66%;
-    --radius: 0.5rem;
+  }
+
+  html {
+    font-family: "Newsreader", ui-sans-serif, system-ui, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
   }
 }
 @layer base {
@@ -32,5 +39,15 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
+  }
+
+  .bounded {
+    margin-inline: auto;
+
+    @apply max-w-screen-lg p-4;
   }
 }
