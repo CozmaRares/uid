@@ -3,6 +3,7 @@ import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import activityImage from "@/assets/activity-image.png";
 import { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
+import { PageTitle, SectionTitle } from "@/components/headings";
 
 export const Route = createLazyFileRoute("/")({
   component: RouteComponent,
@@ -10,11 +11,9 @@ export const Route = createLazyFileRoute("/")({
 
 function RouteComponent() {
   return (
-    <main className="bounded">
-      <header className="flex flex-col items-center justify-center gap-4 pb-24 pt-8 text-center">
-        <h1 className="py-8 text-2xl sm:text-4xl lg:text-6xl">
-          Bringing All Of Cluj Together
-        </h1>
+    <main className="bounded space-y-24">
+      <header className="flex flex-col items-center justify-center gap-4 text-center">
+        <PageTitle>Bringing All Of Cluj Together</PageTitle>
         <Link
           to="/"
           className={buttonVariants()}
@@ -22,7 +21,7 @@ function RouteComponent() {
           Browse Activities
         </Link>
       </header>
-      <section className="grid grid-cols-2 gap-10 md:gap-8 lg:gap-10 md:grid-cols-3 lg:grid-cols-4">
+      <section className="grid grid-cols-2 gap-10 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
         {new Array(8).fill(0).map((_, i) => (
           <ActivityCard
             key={i}
@@ -32,6 +31,21 @@ function RouteComponent() {
             link="/#"
           />
         ))}
+      </section>
+      <section>
+        <SectionTitle>What We Believe</SectionTitle>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+          cumque delectus magni harum, distinctio quaerat commodi magnam
+          similique beatae repellendus officia, fugit rem voluptatibus nobis
+          totam, quia incidunt dolores facere! Aspernatur obcaecati optio fuga
+          enim quidem totam mollitia in corporis saepe voluptate tempora libero,
+          quis voluptas impedit, ea, nisi praesentium eum neque. Vitae porro
+          aliquam nisi numquam, sint quam eos. Quas perspiciatis maiores quaerat
+          ratione labore quo adipisci eveniet! Recusandae eum assumenda eaque
+          ea, voluptas, molestiae iste quasi officiis totam velit quas, debitis
+          aspernatur ab inventore eligendi pariatur vitae aut!
+        </p>
       </section>
     </main>
   );
@@ -60,7 +74,7 @@ export default function ActivityCard({
           <img
             src={image}
             alt={title}
-            className="h-full w-full rounded-[var(--rounded)] object-cover"
+            className="h-full w-full rounded-t-[var(--rounded)] object-cover"
           />
         </div>
         <p className="font-semibold">{title}</p>

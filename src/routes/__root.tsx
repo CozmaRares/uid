@@ -23,7 +23,9 @@ function RouteComponent() {
   return (
     <>
       <Nav />
-      <Outlet />
+      <div className="mt-4 mb-8">
+        <Outlet />
+      </div>
       <TanStackRouterDevtools position="bottom-right" />
       <TailwindIndicator />
     </>
@@ -51,7 +53,7 @@ function Nav() {
   );
 
   return (
-    <nav className="bounded relative flex flex-row items-center justify-between gap-8">
+    <nav className="bounded sticky top-0 z-50 flex flex-row items-center justify-between gap-8 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Link
         to="/"
         className="focus-ring rounded-sm p-0.5 text-lg font-semibold text-primary"
