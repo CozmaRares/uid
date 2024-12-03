@@ -1,1 +1,0 @@
-import{j as x,c as s}from"./index-BA-nH2_h.js";function a({children:t,className:e}){return x.jsx("h1",{className:s("py-8 text-4xl lg:text-6xl",e),children:t})}function n({children:t,className:e}){return x.jsx("h2",{className:s("py-5 text-2xl lg:text-4xl",e),children:t})}export{a as P,n as S};
