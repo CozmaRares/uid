@@ -2,6 +2,7 @@ import MainNav from "@/components/nav/MainNav";
 import MobileNav from "@/components/nav/MobileNav";
 import SliderLink from "@/components/SliderLink";
 import { buttonVariants } from "@/components/ui/button";
+import { Toaster } from "@/components/ui/sonner";
 import { navLinks } from "@/lib/data";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { lazy } from "react";
@@ -23,11 +24,12 @@ function RouteComponent() {
   return (
     <div className="mx-auto max-w-screen-lg">
       <Nav />
-      <div className="py-8 px-4 lg:px-0">
+      <div className="px-4 py-8 lg:px-0">
         <Outlet />
       </div>
       <TanStackRouterDevtools position="bottom-right" />
       <TailwindIndicator />
+      <Toaster />
     </div>
   );
 }

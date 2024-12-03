@@ -13,7 +13,10 @@ function RouteComponent() {
   return (
     <main className="space-y-24">
       <header className="flex flex-col items-center justify-center gap-4 text-center">
-        <PageTitle>Bringing All Of Cluj Together</PageTitle>
+        <PageTitle
+          title="Bringing All Of Cluj Together"
+          className="border-b-0 py-8"
+        />
         <Link
           to="/"
           className={buttonVariants()}
@@ -33,9 +36,10 @@ function RouteComponent() {
         ))}
       </section>
       <section>
-        <SectionTitle className="underline decoration-primary">
-          What We Believe
-        </SectionTitle>
+        <SectionTitle
+          title="What We Believe"
+          titleClassName="underline decoration-primary"
+        />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
           cumque delectus magni harum, distinctio quaerat commodi magnam

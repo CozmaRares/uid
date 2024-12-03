@@ -14,6 +14,7 @@ export default function SliderLink({ text, to, className }: Props) {
         "focus-ring relative p-1 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-right after:bg-primary after:transition-[scale] after:[scale:0_1] after:hover:origin-left after:hover:[scale:1_1]",
         className,
       )}
+      activeProps={{ className: "after:![scale:1_1]" }}
       to={to}
     >
       {text}

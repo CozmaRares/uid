@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 export const Route = createLazyFileRoute("/issues")({
   component: RouteComponent,
@@ -22,17 +23,17 @@ export const Route = createLazyFileRoute("/issues")({
 function RouteComponent() {
   return (
     <main className="space-y-8">
-      <PageTitle className="border-b py-4">Report an Issue</PageTitle>
+      <PageTitle title="Report an Issue" />
       <div className="grid gap-8 md:grid-cols-2">
-        <div className="hidden md:block col-start-2 w-4/5 space-y-8">
-          <SectionTitle>Help Cluj become a better place</SectionTitle>
-          <p className="text-gray-600 text-lg">
+        <div className="col-start-2 hidden w-4/5 space-y-8 md:block">
+          <SectionTitle title="Help Cluj become a better place" />
+          <p className="text-lg text-gray-600">
             Your issue will be reviewed by our team and we will respond to you
             as soon as possible.
           </p>
         </div>
         <div className="row-start-1">
-        <ReportForm />
+          <ReportForm />
         </div>
       </div>
     </main>
@@ -40,10 +41,10 @@ function RouteComponent() {
 }
 
 const formSchema = z.object({
-  lastName: z.string().min(1),
-  firstName: z.string().min(1),
+  firstName: z.string().min(1, "required"),
+  lastName: z.string().min(1, "required"),
   email: z.string().email(),
-  issue: z.string().min(1),
+  issue: z.string().min(1, "required"),
 });
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -58,9 +59,13 @@ function ReportForm() {
     },
   });
 
-  function onSubmit(values: FormSchema) {
+  const onSubmit = (values: FormSchema) => {
     console.log(values);
-  }
+    toast.message("Issue submitted successfully.", {
+      description: "Thank you for your feedback!",
+    });
+  };
+
   return (
     <Form {...form}>
       <form
@@ -72,14 +77,16 @@ function ReportForm() {
           name="firstName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>First Name</FormLabel>
+              <div className="flex items-center justify-between">
+                <FormLabel>First Name</FormLabel>
+                <FormMessage className="text-sm leading-none" />
+              </div>
               <FormControl>
                 <Input
                   placeholder="Ion"
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -88,14 +95,16 @@ function ReportForm() {
           name="lastName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Last Name</FormLabel>
+              <div className="flex items-center justify-between">
+                <FormLabel>Last Name</FormLabel>
+                <FormMessage className="text-sm leading-none" />
+              </div>
               <FormControl>
                 <Input
                   placeholder="Popescu"
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -104,14 +113,16 @@ function ReportForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <div className="flex items-center justify-between">
+                <FormLabel>Email</FormLabel>
+                <FormMessage className="text-sm leading-none" />
+              </div>
               <FormControl>
                 <Input
                   placeholder="ion.popescu@gmail.com"
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -120,7 +131,10 @@ function ReportForm() {
           name="issue"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Issue</FormLabel>
+              <div className="flex items-center justify-between">
+                <FormLabel>Issue</FormLabel>
+                <FormMessage className="text-sm leading-none" />
+              </div>
               <FormControl>
                 <Textarea
                   placeholder="Describe in a few words the issue you’ve encountered..."
@@ -128,11 +142,15 @@ function ReportForm() {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">Submit</Button>
+        <Button
+          type="submit"
+          className="w-full"
+        >
+          Submit
+        </Button>
       </form>
     </Form>
   );

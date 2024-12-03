@@ -18,6 +18,9 @@ import { Route as rootRoute } from './routes/__root'
 
 const IssuesLazyImport = createFileRoute('/issues')()
 const IndexLazyImport = createFileRoute('/')()
+const VotesIndexLazyImport = createFileRoute('/votes/')()
+const VotesAllLazyImport = createFileRoute('/votes/all')()
+const VotesVoteIDLazyImport = createFileRoute('/votes/$voteID')()
 
 // Create/Update Routes
 
@@ -32,6 +35,24 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const VotesIndexLazyRoute = VotesIndexLazyImport.update({
+  id: '/votes/',
+  path: '/votes/',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/votes/index.lazy').then((d) => d.Route))
+
+const VotesAllLazyRoute = VotesAllLazyImport.update({
+  id: '/votes/all',
+  path: '/votes/all',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/votes/all.lazy').then((d) => d.Route))
+
+const VotesVoteIDLazyRoute = VotesVoteIDLazyImport.update({
+  id: '/votes/$voteID',
+  path: '/votes/$voteID',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/votes/$voteID.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
@@ -51,6 +72,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IssuesLazyImport
       parentRoute: typeof rootRoute
     }
+    '/votes/$voteID': {
+      id: '/votes/$voteID'
+      path: '/votes/$voteID'
+      fullPath: '/votes/$voteID'
+      preLoaderRoute: typeof VotesVoteIDLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/votes/all': {
+      id: '/votes/all'
+      path: '/votes/all'
+      fullPath: '/votes/all'
+      preLoaderRoute: typeof VotesAllLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/votes/': {
+      id: '/votes/'
+      path: '/votes'
+      fullPath: '/votes'
+      preLoaderRoute: typeof VotesIndexLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -59,36 +101,51 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/issues': typeof IssuesLazyRoute
+  '/votes/$voteID': typeof VotesVoteIDLazyRoute
+  '/votes/all': typeof VotesAllLazyRoute
+  '/votes': typeof VotesIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/issues': typeof IssuesLazyRoute
+  '/votes/$voteID': typeof VotesVoteIDLazyRoute
+  '/votes/all': typeof VotesAllLazyRoute
+  '/votes': typeof VotesIndexLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/issues': typeof IssuesLazyRoute
+  '/votes/$voteID': typeof VotesVoteIDLazyRoute
+  '/votes/all': typeof VotesAllLazyRoute
+  '/votes/': typeof VotesIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/issues'
+  fullPaths: '/' | '/issues' | '/votes/$voteID' | '/votes/all' | '/votes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/issues'
-  id: '__root__' | '/' | '/issues'
+  to: '/' | '/issues' | '/votes/$voteID' | '/votes/all' | '/votes'
+  id: '__root__' | '/' | '/issues' | '/votes/$voteID' | '/votes/all' | '/votes/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   IssuesLazyRoute: typeof IssuesLazyRoute
+  VotesVoteIDLazyRoute: typeof VotesVoteIDLazyRoute
+  VotesAllLazyRoute: typeof VotesAllLazyRoute
+  VotesIndexLazyRoute: typeof VotesIndexLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   IssuesLazyRoute: IssuesLazyRoute,
+  VotesVoteIDLazyRoute: VotesVoteIDLazyRoute,
+  VotesAllLazyRoute: VotesAllLazyRoute,
+  VotesIndexLazyRoute: VotesIndexLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -102,7 +159,10 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/issues"
+        "/issues",
+        "/votes/$voteID",
+        "/votes/all",
+        "/votes/"
       ]
     },
     "/": {
@@ -110,6 +170,15 @@ export const routeTree = rootRoute
     },
     "/issues": {
       "filePath": "issues.lazy.tsx"
+    },
+    "/votes/$voteID": {
+      "filePath": "votes/$voteID.lazy.tsx"
+    },
+    "/votes/all": {
+      "filePath": "votes/all.lazy.tsx"
+    },
+    "/votes/": {
+      "filePath": "votes/index.lazy.tsx"
     }
   }
 }
