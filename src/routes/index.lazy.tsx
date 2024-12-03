@@ -11,7 +11,7 @@ export const Route = createLazyFileRoute("/")({
 
 function RouteComponent() {
   return (
-    <main className="bounded space-y-24">
+    <main className="space-y-24">
       <header className="flex flex-col items-center justify-center gap-4 text-center">
         <PageTitle>Bringing All Of Cluj Together</PageTitle>
         <Link
@@ -33,7 +33,9 @@ function RouteComponent() {
         ))}
       </section>
       <section>
-        <SectionTitle>What We Believe</SectionTitle>
+        <SectionTitle className="underline decoration-primary">
+          What We Believe
+        </SectionTitle>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
           cumque delectus magni harum, distinctio quaerat commodi magnam

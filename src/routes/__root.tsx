@@ -21,14 +21,14 @@ export const Route = createRootRoute({
 
 function RouteComponent() {
   return (
-    <>
+    <div className="mx-auto max-w-screen-lg">
       <Nav />
-      <div className="mt-4 mb-8">
+      <div className="py-8 px-4 lg:px-0">
         <Outlet />
       </div>
       <TanStackRouterDevtools position="bottom-right" />
       <TailwindIndicator />
-    </>
+    </div>
   );
 }
 
@@ -53,7 +53,7 @@ function Nav() {
   );
 
   return (
-    <nav className="bounded sticky top-0 z-50 flex flex-row items-center justify-between gap-8 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className="sticky top-0 z-50 flex flex-row items-center justify-between gap-8 border-b border-border/40 bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Link
         to="/"
         className="focus-ring rounded-sm p-0.5 text-lg font-semibold text-primary"
