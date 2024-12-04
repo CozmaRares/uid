@@ -25,15 +25,18 @@ function RouteComponent() {
         </Link>
       </header>
       <section className="grid grid-cols-2 gap-10 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
-        {new Array(8).fill(0).map((_, i) => (
-          <ActivityCard
-            key={i}
-            image={activityImage}
-            title="Central Park Garbage Pickup"
-            date="7th Nov. 2024"
-            link="/#"
-          />
-        ))}
+        <ul className="contents">
+          {new Array(8).fill(0).map((_, i) => (
+            <li key={i}>
+              <ActivityCard
+                image={activityImage}
+                title="Central Park Garbage Pickup"
+                date="7th Nov. 2024"
+                link="/#"
+              />
+            </li>
+          ))}
+        </ul>
       </section>
       <section>
         <SectionTitle

@@ -45,7 +45,7 @@ export default function MobileNav({ children }: Props) {
       <DrawerContent className="max-h-[60svh] p-0">
         <DrawerTitle className="sr-only">Menu</DrawerTitle>
         <DrawerDescription className="sr-only">Menu</DrawerDescription>
-        <div className="p-4 overflow-auto">
+        <div className="overflow-auto p-4">
           <ul className="space-y-3">{children}</ul>
         </div>
       </DrawerContent>

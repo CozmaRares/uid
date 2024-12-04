@@ -25,7 +25,7 @@ function RouteComponent() {
     <main className="space-y-8">
       <PageTitle title="Report an Issue" />
       <div className="grid gap-8 md:grid-cols-2">
-        <div className="col-start-2 hidden w-4/5 space-y-8 md:block">
+        <div className="col-start-2 hidden lg:w-4/5 space-y-8 md:block">
           <SectionTitle title="Help Cluj become a better place" />
           <p className="text-lg text-gray-600">
             Your issue will be reviewed by our team and we will respond to you

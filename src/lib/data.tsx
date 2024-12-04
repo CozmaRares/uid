@@ -1,7 +1,7 @@
 type NavLink = { text: string; to: string };
 export const navLinks = Object.freeze([
   { text: "Issues", to: "/issues" },
-  { text: "Votes", to: "/votes" },
+  { text: "Vote", to: "/vote" },
   { text: "Survey", to: "/survey" },
   { text: "Meetings", to: "/meetings" },
   { text: "Track Progres", to: "/progress" },
@@ -23,7 +23,7 @@ export type Vote = {
     solution: string;
     numVotes: number;
   }>;
-  comments?: Array<Comment & { replies: Array<Comment> }>;
+  comments?: Array<Comment>;
 };
 export const votes = Object.freeze([
   {
@@ -43,21 +43,12 @@ export const votes = Object.freeze([
         date: new Date("2024-12-01"),
         content: "Improving the metro is crucial for sustainable transport!",
         likes: 45,
-        replies: [
-          {
-            author: "EcoWarrior",
-            date: new Date("2024-12-02"),
-            content: "Absolutely agree, it's a long-term investment.",
-            likes: 20,
-          },
-        ],
       },
       {
         author: "Skeptic123",
         date: new Date("2024-12-01"),
         content: "Where will the funding come from?",
         likes: 12,
-        replies: [],
       },
     ],
   },
@@ -78,14 +69,6 @@ export const votes = Object.freeze([
         date: new Date("2024-11-30"),
         content: "This will impact low-income families the most.",
         likes: 60,
-        replies: [
-          {
-            author: "PolicyExpert",
-            date: new Date("2024-12-01"),
-            content: "That's why we should consider alternative solutions.",
-            likes: 30,
-          },
-        ],
       },
     ],
   },
@@ -106,14 +89,6 @@ export const votes = Object.freeze([
         date: new Date("2024-11-29"),
         content: "Tolls might discourage unnecessary traffic.",
         likes: 80,
-        replies: [
-          {
-            author: "DailyCommuter",
-            date: new Date("2024-11-30"),
-            content: "But that will make commuting expensive for workers.",
-            likes: 50,
-          },
-        ],
       },
     ],
   },
@@ -140,14 +115,6 @@ export const votes = Object.freeze([
         date: new Date("2024-11-28"),
         content: "Extending the bypass is overdue.",
         likes: 90,
-        replies: [
-          {
-            author: "GreenActivist",
-            date: new Date("2024-11-29"),
-            content: "Road expansions lead to more traffic, not less.",
-            likes: 40,
-          },
-        ],
       },
     ],
   },
@@ -168,15 +135,6 @@ export const votes = Object.freeze([
         date: new Date("2024-12-02"),
         content: "We need to act now to protect our environment.",
         likes: 70,
-        replies: [
-          {
-            author: "LocalBusinessOwner",
-            date: new Date("2024-12-03"),
-            content:
-              "But what about small businesses that rely on affordable packaging?",
-            likes: 35,
-          },
-        ],
       },
     ],
   },
@@ -203,7 +161,6 @@ export const votes = Object.freeze([
         date: new Date("2024-11-30"),
         content: "Libraries are the backbone of an educated society!",
         likes: 50,
-        replies: [],
       },
     ],
   },
@@ -227,14 +184,6 @@ export const votes = Object.freeze([
         date: new Date("2024-12-01"),
         content: "Noise pollution has become unbearable in some areas.",
         likes: 40,
-        replies: [
-          {
-            author: "CityWorker",
-            date: new Date("2024-12-02"),
-            content: "Some noise is inevitable in a growing city.",
-            likes: 25,
-          },
-        ],
       },
     ],
   },
@@ -262,14 +211,6 @@ export const votes = Object.freeze([
         date: new Date("2024-11-29"),
         content: "A renewable energy focus will secure our future.",
         likes: 100,
-        replies: [
-          {
-            author: "BudgetWatcher",
-            date: new Date("2024-11-30"),
-            content: "But how will we balance the budget for these projects?",
-            likes: 50,
-          },
-        ],
       },
     ],
   },

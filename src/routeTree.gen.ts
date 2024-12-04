@@ -8,149 +8,149 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
+import { Route as rootRoute } from "./routes/__root";
 
 // Create Virtual Routes
 
-const IssuesLazyImport = createFileRoute('/issues')()
-const IndexLazyImport = createFileRoute('/')()
-const VotesIndexLazyImport = createFileRoute('/votes/')()
-const VotesAllLazyImport = createFileRoute('/votes/all')()
-const VotesVoteIDLazyImport = createFileRoute('/votes/$voteID')()
+const IssuesLazyImport = createFileRoute("/issues")();
+const IndexLazyImport = createFileRoute("/")();
+const VoteIndexLazyImport = createFileRoute("/vote/")();
+const VoteAllLazyImport = createFileRoute("/vote/all")();
+const VoteVoteIDLazyImport = createFileRoute("/vote/$voteID")();
 
 // Create/Update Routes
 
 const IssuesLazyRoute = IssuesLazyImport.update({
-  id: '/issues',
-  path: '/issues',
+  id: "/issues",
+  path: "/issues",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/issues.lazy').then((d) => d.Route))
+} as any).lazy(() => import("./routes/issues.lazy").then(d => d.Route));
 
 const IndexLazyRoute = IndexLazyImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+} as any).lazy(() => import("./routes/index.lazy").then(d => d.Route));
 
-const VotesIndexLazyRoute = VotesIndexLazyImport.update({
-  id: '/votes/',
-  path: '/votes/',
+const VoteIndexLazyRoute = VoteIndexLazyImport.update({
+  id: "/vote/",
+  path: "/vote/",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/votes/index.lazy').then((d) => d.Route))
+} as any).lazy(() => import("./routes/vote/index.lazy").then(d => d.Route));
 
-const VotesAllLazyRoute = VotesAllLazyImport.update({
-  id: '/votes/all',
-  path: '/votes/all',
+const VoteAllLazyRoute = VoteAllLazyImport.update({
+  id: "/vote/all",
+  path: "/vote/all",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/votes/all.lazy').then((d) => d.Route))
+} as any).lazy(() => import("./routes/vote/all.lazy").then(d => d.Route));
 
-const VotesVoteIDLazyRoute = VotesVoteIDLazyImport.update({
-  id: '/votes/$voteID',
-  path: '/votes/$voteID',
+const VoteVoteIDLazyRoute = VoteVoteIDLazyImport.update({
+  id: "/vote/$voteID",
+  path: "/vote/$voteID",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/votes/$voteID.lazy').then((d) => d.Route))
+} as any).lazy(() => import("./routes/vote/$voteID.lazy").then(d => d.Route));
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/issues': {
-      id: '/issues'
-      path: '/issues'
-      fullPath: '/issues'
-      preLoaderRoute: typeof IssuesLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/votes/$voteID': {
-      id: '/votes/$voteID'
-      path: '/votes/$voteID'
-      fullPath: '/votes/$voteID'
-      preLoaderRoute: typeof VotesVoteIDLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/votes/all': {
-      id: '/votes/all'
-      path: '/votes/all'
-      fullPath: '/votes/all'
-      preLoaderRoute: typeof VotesAllLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/votes/': {
-      id: '/votes/'
-      path: '/votes'
-      fullPath: '/votes'
-      preLoaderRoute: typeof VotesIndexLazyImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexLazyImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/issues": {
+      id: "/issues";
+      path: "/issues";
+      fullPath: "/issues";
+      preLoaderRoute: typeof IssuesLazyImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/vote/$voteID": {
+      id: "/vote/$voteID";
+      path: "/vote/$voteID";
+      fullPath: "/vote/$voteID";
+      preLoaderRoute: typeof VoteVoteIDLazyImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/vote/all": {
+      id: "/vote/all";
+      path: "/vote/all";
+      fullPath: "/vote/all";
+      preLoaderRoute: typeof VoteAllLazyImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/vote/": {
+      id: "/vote/";
+      path: "/vote";
+      fullPath: "/vote";
+      preLoaderRoute: typeof VoteIndexLazyImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
-  '/issues': typeof IssuesLazyRoute
-  '/votes/$voteID': typeof VotesVoteIDLazyRoute
-  '/votes/all': typeof VotesAllLazyRoute
-  '/votes': typeof VotesIndexLazyRoute
+  "/": typeof IndexLazyRoute;
+  "/issues": typeof IssuesLazyRoute;
+  "/vote/$voteID": typeof VoteVoteIDLazyRoute;
+  "/vote/all": typeof VoteAllLazyRoute;
+  "/vote": typeof VoteIndexLazyRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
-  '/issues': typeof IssuesLazyRoute
-  '/votes/$voteID': typeof VotesVoteIDLazyRoute
-  '/votes/all': typeof VotesAllLazyRoute
-  '/votes': typeof VotesIndexLazyRoute
+  "/": typeof IndexLazyRoute;
+  "/issues": typeof IssuesLazyRoute;
+  "/vote/$voteID": typeof VoteVoteIDLazyRoute;
+  "/vote/all": typeof VoteAllLazyRoute;
+  "/vote": typeof VoteIndexLazyRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexLazyRoute
-  '/issues': typeof IssuesLazyRoute
-  '/votes/$voteID': typeof VotesVoteIDLazyRoute
-  '/votes/all': typeof VotesAllLazyRoute
-  '/votes/': typeof VotesIndexLazyRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexLazyRoute;
+  "/issues": typeof IssuesLazyRoute;
+  "/vote/$voteID": typeof VoteVoteIDLazyRoute;
+  "/vote/all": typeof VoteAllLazyRoute;
+  "/vote/": typeof VoteIndexLazyRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/issues' | '/votes/$voteID' | '/votes/all' | '/votes'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/issues' | '/votes/$voteID' | '/votes/all' | '/votes'
-  id: '__root__' | '/' | '/issues' | '/votes/$voteID' | '/votes/all' | '/votes/'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/" | "/issues" | "/vote/$voteID" | "/vote/all" | "/vote";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/issues" | "/vote/$voteID" | "/vote/all" | "/vote";
+  id: "__root__" | "/" | "/issues" | "/vote/$voteID" | "/vote/all" | "/vote/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
-  IssuesLazyRoute: typeof IssuesLazyRoute
-  VotesVoteIDLazyRoute: typeof VotesVoteIDLazyRoute
-  VotesAllLazyRoute: typeof VotesAllLazyRoute
-  VotesIndexLazyRoute: typeof VotesIndexLazyRoute
+  IndexLazyRoute: typeof IndexLazyRoute;
+  IssuesLazyRoute: typeof IssuesLazyRoute;
+  VoteVoteIDLazyRoute: typeof VoteVoteIDLazyRoute;
+  VoteAllLazyRoute: typeof VoteAllLazyRoute;
+  VoteIndexLazyRoute: typeof VoteIndexLazyRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   IssuesLazyRoute: IssuesLazyRoute,
-  VotesVoteIDLazyRoute: VotesVoteIDLazyRoute,
-  VotesAllLazyRoute: VotesAllLazyRoute,
-  VotesIndexLazyRoute: VotesIndexLazyRoute,
-}
+  VoteVoteIDLazyRoute: VoteVoteIDLazyRoute,
+  VoteAllLazyRoute: VoteAllLazyRoute,
+  VoteIndexLazyRoute: VoteIndexLazyRoute,
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
@@ -160,9 +160,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/issues",
-        "/votes/$voteID",
-        "/votes/all",
-        "/votes/"
+        "/vote/$voteID",
+        "/vote/all",
+        "/vote/"
       ]
     },
     "/": {
@@ -171,14 +171,14 @@ export const routeTree = rootRoute
     "/issues": {
       "filePath": "issues.lazy.tsx"
     },
-    "/votes/$voteID": {
-      "filePath": "votes/$voteID.lazy.tsx"
+    "/vote/$voteID": {
+      "filePath": "vote/$voteID.lazy.tsx"
     },
-    "/votes/all": {
-      "filePath": "votes/all.lazy.tsx"
+    "/vote/all": {
+      "filePath": "vote/all.lazy.tsx"
     },
-    "/votes/": {
-      "filePath": "votes/index.lazy.tsx"
+    "/vote/": {
+      "filePath": "vote/index.lazy.tsx"
     }
   }
 }
