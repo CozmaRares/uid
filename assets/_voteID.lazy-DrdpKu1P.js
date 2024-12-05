@@ -1,1 +1,0 @@
-import{b as e,j as t}from"./index-D1kMV_c5.js";const n=e("/votes/$voteID")({component:s});function s(){const{voteID:o}=n.useParams();return t.jsxs("div",{children:['Hello "/vote/$voteID"! ',o]})}export{n as Route};
