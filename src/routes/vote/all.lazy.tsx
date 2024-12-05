@@ -1,6 +1,6 @@
-import { PageTitle } from "@/components/headings";
+import { TitleContainer, Title } from "@/components/Title";
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
-import { votes } from "@/lib/data";
+import { votes } from "@/lib/data/votes";
 import { Card } from "@/components/ui/card";
 
 export const Route = createLazyFileRoute("/vote/all")({
@@ -10,10 +10,12 @@ export const Route = createLazyFileRoute("/vote/all")({
 function RouteComponent() {
   return (
     <main>
-      <PageTitle
-        title="Browse Votes"
+      <TitleContainer
+        variant="page"
         className="mb-8"
-      />
+      >
+        <Title>Browse Votes</Title>
+      </TitleContainer>
       <section className="grid gap-4 md:grid-cols-2">
         <ul className="contents">
           {votes.map(vote => (

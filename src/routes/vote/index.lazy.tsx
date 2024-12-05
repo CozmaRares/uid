@@ -1,11 +1,11 @@
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
-import { votes, Vote } from "@/lib/data";
+import { votes, Vote } from "@/lib/data/votes";
 import { CSSProperties, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { PageTitle } from "@/components/headings";
-import { cn, compactNumberFormatter } from "@/lib/utils";
+import { TitleContainer, Title, TitleDescription } from "@/components/Title";
+import { cn, formatCompactNumber } from "@/lib/utils";
 import { toast } from "sonner";
 
 export const Route = createLazyFileRoute("/vote/")({
@@ -17,12 +17,13 @@ function RouteComponent() {
   const [hasVoted, setHasVoted] = useState(false);
 
   return (
-    <main>
-      <PageTitle
-        className="mb-8"
-        title="Vote"
-        description="Vote on the most important decisions"
-      />
+    <main className="space-y-8">
+      <TitleContainer variant="page">
+        <Title>Vote</Title>
+        <TitleDescription>
+          Vote on the most important decisions
+        </TitleDescription>
+      </TitleContainer>
       <div className="grid gap-8 lg:grid-cols-2">
         <section className="space-y-4">
           <ul className="grid gap-4 md:grid-cols-2">
@@ -77,8 +78,8 @@ function RouteComponent() {
                 <div className="flex justify-between text-sm">
                   <span className="text-black/80">Progress</span>
                   <span className="font-medium">
-                    {compactNumberFormatter.format(selectedVote.numVotes)} votes out of{" "}
-                    {compactNumberFormatter.format(selectedVote.necessaryVotes)}
+                    {formatCompactNumber(selectedVote.numVotes)} votes out of{" "}
+                    {formatCompactNumber(selectedVote.necessaryVotes)}
                   </span>
                 </div>
                 <Progress

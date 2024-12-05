@@ -1,4 +1,4 @@
-import { PageTitle, SectionTitle } from "@/components/headings";
+import { Title, TitleContainer, TitleDescription } from "@/components/Title";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -23,15 +23,20 @@ export const Route = createLazyFileRoute("/issues")({
 function RouteComponent() {
   return (
     <main className="space-y-8">
-      <PageTitle title="Report an Issue" />
+      <TitleContainer variant="page">
+        <Title>Report an Issue</Title>
+      </TitleContainer>
       <div className="grid gap-8 md:grid-cols-2">
-        <div className="col-start-2 hidden lg:w-4/5 space-y-8 md:block">
-          <SectionTitle title="Help Cluj become a better place" />
-          <p className="text-lg text-gray-600">
+        <TitleContainer
+          variant="section"
+          className="col-start-2 hidden space-y-8 md:block lg:w-4/5"
+        >
+          <Title>Help Cluj become a better place</Title>
+          <TitleDescription>
             Your issue will be reviewed by our team and we will respond to you
             as soon as possible.
-          </p>
-        </div>
+          </TitleDescription>
+        </TitleContainer>
         <div className="row-start-1">
           <ReportForm />
         </div>

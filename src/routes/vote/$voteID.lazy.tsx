@@ -1,10 +1,10 @@
-import { PageTitle, SectionTitle } from "@/components/headings";
+import { TitleContainer, Title, TitleDescription } from "@/components/Title";
 import NotFound from "@/components/NotFound";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { votes, Comment, Vote } from "@/lib/data";
-import { cn, formatRelativeDate, compactNumberFormatter } from "@/lib/utils";
+import { votes, Comment } from "@/lib/data/votes";
+import { cn, formatRelativeDate, formatCompactNumber } from "@/lib/utils";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -57,16 +57,18 @@ function RouteComponent() {
     <main className="space-y-8">
       <section className="space-y-8">
         <div>
-          <PageTitle
-            title={vote.title}
+          <TitleContainer
+            variant="page"
             className="border-b-0"
-          />
+          >
+            <Title>{vote.title}</Title>
+          </TitleContainer>
           <div>
             <span className="text-lg font-medium">
-              {compactNumberFormatter.format(vote.numVotes)}
+              {formatCompactNumber(vote.numVotes)}
             </span>{" "}
             <span className="opacity-80">
-              votes out of {compactNumberFormatter.format(vote.necessaryVotes)}
+              votes out of {formatCompactNumber(vote.necessaryVotes)}
             </span>
             <Progress value={(vote.numVotes / vote.necessaryVotes) * 100} />
           </div>
@@ -118,56 +120,66 @@ function RouteComponent() {
         </Card>
       </section>
       <section>
-        <SectionTitle title="Alternatives" />
+        <TitleContainer variant="section">
+          <Title>Alternatives</Title>
+        </TitleContainer>
         <ul className="space-y-3">
-          {vote.alternatives.map((alternative, idx) => {
-            const id = vote.id + idx;
-            const hasVotedAlternative = votedID === id;
+          {vote.alternatives ? (
+            vote.alternatives.map((alternative, idx) => {
+              const id = vote.id + idx;
+              const hasVotedAlternative = votedID === id;
 
-            return (
-              <li key={id}>
-                <Card className="flex h-full w-full flex-row items-center justify-between gap-2 p-4">
-                  <div className="w-full">
-                    <p>{alternative.solution}</p>
-                    <span className="row-start-2 italic opacity-90">
-                      {alternative.numVotes} votes
-                    </span>
-                  </div>
-                  <Button
-                    className={cn(
-                      "w-[25ch]",
-                      hasVoted &&
-                        "cursor-auto bg-secondary hover:bg-secondary disabled:opacity-100",
-                    )}
-                    disabled={hasVoted}
-                    onClick={() => {
-                      setVotedID(id);
-                      toast.success("Thank you for voting!");
-                    }}
-                  >
-                    {hasVotedAlternative
-                      ? "Signed"
-                      : hasVoted
-                        ? "Already voted"
-                        : "Sign here"}
-                  </Button>
-                </Card>
-              </li>
-            );
-          })}
+              return (
+                <li key={id}>
+                  <Card className="flex h-full w-full flex-row items-center justify-between gap-2 p-4">
+                    <div className="w-full">
+                      <p>{alternative.solution}</p>
+                      <span className="row-start-2 italic opacity-90">
+                        {alternative.numVotes} votes
+                      </span>
+                    </div>
+                    <Button
+                      className={cn(
+                        "w-[25ch]",
+                        hasVoted &&
+                          "cursor-auto bg-secondary hover:bg-secondary disabled:opacity-100",
+                      )}
+                      disabled={hasVoted}
+                      onClick={() => {
+                        setVotedID(id);
+                        toast.success("Thank you for voting!");
+                      }}
+                    >
+                      {hasVotedAlternative
+                        ? "Signed"
+                        : hasVoted
+                          ? "Already voted"
+                          : "Sign here"}
+                    </Button>
+                  </Card>
+                </li>
+              );
+            })
+          ) : (
+            <div>No alternatives yet</div>
+          )}
         </ul>
       </section>
       <section>
-        <SectionTitle
-          title="Comments"
-          description="Share your thoughts"
-        />
+        <TitleContainer variant="section">
+          <Title>Comments</Title>
+          <TitleDescription>Share your thoughts</TitleDescription>
+        </TitleContainer>
         <ul className="space-y-4">
-          {vote.comments.map((comment, i) => (
-            <li key={i}>
-              <IndividualComment comment={comment} />
-            </li>
-          ))}
+          {vote.comments ? (
+            vote.comments.map((comment, i) => (
+              <li key={i}>
+                <IndividualComment comment={comment} />
+              </li>
+            ))
+          ) : (
+            <div>No comments yet</div>
+          )}
         </ul>
       </section>
     </main>
@@ -229,7 +241,7 @@ function IndividualComment({ comment }: IndividualCommentProps) {
   const [like, setLike] = useState(0);
 
   return (
-    <Card className="py-2 px-4">
+    <Card className="px-4 py-2">
       <div className="flex items-center gap-1">
         <span>@{comment.author}</span>
         <span className="tracking-tighter text-muted-foreground">
@@ -240,7 +252,7 @@ function IndividualComment({ comment }: IndividualCommentProps) {
       <div className="flex flex-row items-center gap-3 text-sm">
         <div className="flex flex-row items-center gap-1.5">
           <button
-            className={cn(like == 1 && "text-secondary")}
+            className={cn("focus-ring p-0.5", like == 1 && "text-secondary")}
             onClick={() => setLike(prevLike => (prevLike == 1 ? 0 : 1))}
           >
             <ThumbsUp
@@ -252,7 +264,7 @@ function IndividualComment({ comment }: IndividualCommentProps) {
           {comment.likes}
         </div>
         <button
-          className={cn(like == -1 && "text-secondary")}
+          className={cn("focus-ring p-0.5", like == -1 && "text-primary")}
           onClick={() => setLike(prevLike => (prevLike == -1 ? 0 : -1))}
         >
           <ThumbsDown

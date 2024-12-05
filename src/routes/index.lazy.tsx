@@ -3,7 +3,7 @@ import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import activityImage from "@/assets/activity-image.png";
 import { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
-import { PageTitle, SectionTitle } from "@/components/headings";
+import { TitleContainer, Title } from "@/components/Title";
 
 export const Route = createLazyFileRoute("/")({
   component: RouteComponent,
@@ -11,21 +11,17 @@ export const Route = createLazyFileRoute("/")({
 
 function RouteComponent() {
   return (
-    <main className="space-y-24">
+    <main className="space-y-16">
       <header className="flex flex-col items-center justify-center gap-4 text-center">
-        <PageTitle
-          title="Bringing All Of Cluj Together"
-          className="border-b-0 py-8"
-        />
-        <Link
-          to="/"
-          className={buttonVariants()}
+        <TitleContainer
+          variant="page"
+          className="border-b-0 pt-8"
         >
-          Browse Activities
-        </Link>
+          <Title>Bringing All Of Cluj Together</Title>
+        </TitleContainer>
       </header>
-      <section className="grid grid-cols-2 gap-10 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
-        <ul className="contents">
+      <section className="space-y-12">
+        <ul className="grid grid-cols-2 gap-10 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
           {new Array(8).fill(0).map((_, i) => (
             <li key={i}>
               <ActivityCard
@@ -37,12 +33,19 @@ function RouteComponent() {
             </li>
           ))}
         </ul>
+        <Link
+          to="/activities"
+          className={cn(buttonVariants(), "mx-auto block w-fit")}
+        >
+          Browse Activities
+        </Link>
       </section>
       <section>
-        <SectionTitle
-          title="What We Believe"
-          titleClassName="underline decoration-primary"
-        />
+        <TitleContainer variant="section">
+          <Title className="underline decoration-primary">
+            What We Believe
+          </Title>
+        </TitleContainer>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
           cumque delectus magni harum, distinctio quaerat commodi magnam

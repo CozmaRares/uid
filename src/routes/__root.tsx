@@ -3,7 +3,7 @@ import MobileNav from "@/components/nav/MobileNav";
 import SliderLink from "@/components/SliderLink";
 import { buttonVariants } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
-import { navLinks } from "@/lib/data";
+import { navLinks } from "@/lib/data/nav";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { lazy } from "react";
 
@@ -48,8 +48,12 @@ function Nav() {
       <Link
         to="/"
         className={buttonVariants()}
+        activeProps={{
+          className:
+            "!bg-secondary text-secondary-foreground hover:!bg-secondary/90",
+        }}
       >
-        My Activities
+        Track My Activities
       </Link>
     </li>,
   );

@@ -1,12 +1,3 @@
-type NavLink = { text: string; to: string };
-export const navLinks = Object.freeze([
-  { text: "Issues", to: "/issues" },
-  { text: "Vote", to: "/vote" },
-  { text: "Survey", to: "/survey" },
-  { text: "Meetings", to: "/meetings" },
-  { text: "Track Progres", to: "/progress" },
-] as const) satisfies Readonly<Array<NavLink>>;
-
 export type Comment = {
   author: string;
   date: Date;
@@ -25,7 +16,7 @@ export type Vote = {
   }>;
   comments?: Array<Comment>;
 };
-export const votes = Object.freeze([
+export const votes: Readonly<Array<Vote>> = Object.freeze([
   {
     id: "1",
     title: "More funds for the metro",
@@ -214,4 +205,4 @@ export const votes = Object.freeze([
       },
     ],
   },
-] as const) satisfies Readonly<Array<Vote>>;
+] as const);
