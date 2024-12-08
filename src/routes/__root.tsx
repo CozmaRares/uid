@@ -22,7 +22,7 @@ export const Route = createRootRoute({
 
 function RouteComponent() {
   return (
-    <div className="mx-auto max-w-screen-lg">
+    <>
       <Nav />
       <div className="px-4 py-8 lg:px-0">
         <Outlet />
@@ -30,7 +30,7 @@ function RouteComponent() {
       <TanStackRouterDevtools position="bottom-right" />
       <TailwindIndicator />
       <Toaster />
-    </div>
+    </>
   );
 }
 
@@ -46,20 +46,20 @@ function Nav() {
   list.push(
     <li key="my-activities">
       <Link
-        to="/"
+        to="/issues/my-issues"
         className={buttonVariants()}
         activeProps={{
           className:
             "!bg-secondary text-secondary-foreground hover:!bg-secondary/90",
         }}
       >
-        Track My Activities
+        My Issues
       </Link>
     </li>,
   );
 
   return (
-    <nav className="sticky top-0 z-50 flex flex-row items-center justify-between gap-8 border-b border-border/40 bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className="sticky bounded-container top-0 z-50 flex flex-row items-center justify-between gap-8 border-b border-border/40 bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Link
         to="/"
         className="focus-ring rounded-sm p-0.5 text-lg font-semibold text-primary"

@@ -4,7 +4,7 @@ import { Meeting, meetings } from "@/lib/data/meetings";
 import { useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { cn, formatDateWithDay } from "@/lib/utils";
-import { CassetteTape, CircleFadingArrowUp, Radio } from "lucide-react";
+import { Radio, CircleFadingArrowUp, Video } from "lucide-react";
 
 export const Route = createLazyFileRoute("/meetings/")({
   component: RouteComponent,
@@ -28,7 +28,7 @@ function RouteComponent() {
   );
 
   return (
-    <main className="space-y-8">
+    <main className="space-y-8 bounded-container">
       <TitleContainer
         variant="page"
         className="flex items-center justify-between"
@@ -115,7 +115,7 @@ function MeetingCard({ meeting }: CardProps) {
     <Card className="h-full w-full overflow-hidden">
       <Link
         to={`/meetings/${meeting.id}`}
-        className="h-full w-full block space-y-1 p-3 hover:bg-accent/40"
+        className="block h-full w-full space-y-1 p-3 hover:bg-accent/40"
       >
         <div className="flex items-center gap-2">
           <span
@@ -126,14 +126,14 @@ function MeetingCard({ meeting }: CardProps) {
               <Radio
                 width="1em"
                 height="1em"
-                className="text-primary"
+                className="text-red-600"
               />
             )}
             {meeting.status === "recorded" && (
-              <CassetteTape
+              <Video
                 width="1em"
                 height="1em"
-                className="text-secondary"
+                className="text-primary"
               />
             )}
             {meeting.status === "upcoming" && (

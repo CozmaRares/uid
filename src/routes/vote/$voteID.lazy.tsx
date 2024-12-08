@@ -54,7 +54,7 @@ function RouteComponent() {
   const hasVotedCurrentVote = votedID === vote.id;
 
   return (
-    <main className="space-y-8">
+    <main key={votedID} className="bounded-container space-y-8">
       <section className="space-y-8">
         <div>
           <TitleContainer

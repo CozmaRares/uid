@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider } from "@tanstack/react-router";
+import { createHashHistory, RouterProvider } from "@tanstack/react-router";
 import "@/index.css";
 import { routeTree } from "@/routeTree.gen";
 import { createRouter } from "@tanstack/react-router";
@@ -9,6 +9,7 @@ import NotFound from "@/components/NotFound";
 const router = createRouter({
   routeTree,
   defaultNotFoundComponent: NotFound,
+  history: createHashHistory(),
 });
 
 declare module "@tanstack/react-router" {

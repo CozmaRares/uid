@@ -1,9 +1,10 @@
 import { buttonVariants } from "@/components/ui/button";
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import activityImage from "@/assets/activity-image.png";
-import { CSSProperties } from "react";
-import { cn } from "@/lib/utils";
+import { cn, formatDateWithHour } from "@/lib/utils";
 import { TitleContainer, Title } from "@/components/Title";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Clock, MapPin, Users } from "lucide-react";
 
 export const Route = createLazyFileRoute("/")({
   component: RouteComponent,
@@ -11,7 +12,7 @@ export const Route = createLazyFileRoute("/")({
 
 function RouteComponent() {
   return (
-    <main className="space-y-16">
+    <main className="bounded-container space-y-16">
       <header className="flex flex-col items-center justify-center gap-4 text-center">
         <TitleContainer
           variant="page"
@@ -21,14 +22,15 @@ function RouteComponent() {
         </TitleContainer>
       </header>
       <section className="space-y-12">
-        <ul className="grid grid-cols-2 gap-10 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
+        <ul className="grid items-center justify-center gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10">
           {new Array(8).fill(0).map((_, i) => (
             <li key={i}>
               <ActivityCard
                 image={activityImage}
                 title="Central Park Garbage Pickup"
-                date="7th Nov. 2024"
-                link="/#"
+                date={new Date("2024-11-07T09:00:00")}
+                location="Central Park, Cluj-Napoca"
+                link="/"
               />
             </li>
           ))}
@@ -66,7 +68,8 @@ function RouteComponent() {
 type ActivityCardProps = {
   image: string;
   title: string;
-  date: string;
+  location: string;
+  date: Date;
   link: string;
 };
 
@@ -75,29 +78,44 @@ export default function ActivityCard({
   title,
   date,
   link,
+  location,
 }: ActivityCardProps) {
   return (
-    <article className="space-y-3">
-      <div
-        className="space-y-1 rounded-[calc(var(--rounded)+var(--padding))] border bg-card p-[var(--padding)] text-card-foreground"
-        style={{ "--rounded": "4px", "--padding": "8px" } as CSSProperties}
-      >
-        <div>
-          <img
-            src={image}
-            alt={title}
-            className="h-full w-full rounded-t-[var(--rounded)] object-cover"
-          />
-        </div>
-        <p className="font-semibold">{title}</p>
-        <p className="font-light">{date}</p>
+    <Card className="h-full w-full max-w-sm overflow-hidden">
+      <div className="relative h-48 w-full">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover"
+        />
       </div>
-      <Link
-        href={link}
-        className={cn(buttonVariants(), "mx-auto block w-fit")}
-      >
-        Apply
-      </Link>
-    </article>
+      <CardContent className="space-y-4 p-4">
+        <div>
+          <h3 className="text-xl font-semibold capitalize">{title}</h3>
+          <div className="mt-2 space-y-2">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <MapPin className="h-4 w-4" />
+              <span>{location}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Clock className="h-4 w-4" />
+              <span>{formatDateWithHour(date)}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Users className="h-4 w-4" />
+              <span>24 participants</span>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter className="p-4 pt-0">
+        <Link
+          className={cn(buttonVariants(), "w-full")}
+          href={link}
+        >
+          Apply
+        </Link>
+      </CardFooter>
+    </Card>
   );
 }

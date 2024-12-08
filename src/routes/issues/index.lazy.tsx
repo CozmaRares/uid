@@ -16,13 +16,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
-export const Route = createLazyFileRoute("/issues")({
+export const Route = createLazyFileRoute("/issues/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   return (
-    <main className="space-y-8">
+    <main className="space-y-8 bounded-container">
       <TitleContainer variant="page">
         <Title>Report an Issue</Title>
       </TitleContainer>

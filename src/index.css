@@ -44,4 +44,8 @@
   .focus-ring {
     @apply rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
   }
+
+  .bounded-container {
+    @apply mx-auto max-w-screen-lg;
+  }
 }

@@ -17,7 +17,7 @@ function RouteComponent() {
   const [hasVoted, setHasVoted] = useState(false);
 
   return (
-    <main className="space-y-8">
+    <main className="space-y-8 bounded-container">
       <TitleContainer variant="page">
         <Title>Vote</Title>
         <TitleDescription>

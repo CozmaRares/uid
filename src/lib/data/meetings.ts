@@ -5,21 +5,21 @@ export type Meeting = {
   date: Date;
   timeframe: [string, string];
   status: "live" | "recorded" | "upcoming";
-  liveComments: Array<{
+  messages: Array<{
     author: string;
     content: string;
   }>;
 };
 export const meetings: Readonly<Array<Meeting>> = Object.freeze([
   {
-    id: "1",
+    id: "live",
     title: "Pothole Repairs in Downtown",
     description:
       "Discussing solutions for recurring potholes in downtown streets.",
     date: new Date("2024-12-10T15:00:00"),
     timeframe: ["15:00", "16:30"],
     status: "live",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "We need to allocate more budget for repairs.",
@@ -74,13 +74,13 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     ],
   },
   {
-    id: "2",
+    id: "upcoming",
     title: "Improving Public Transport Efficiency",
     description: "Brainstorming ideas to improve bus and train schedules.",
     date: new Date("2024-12-12T10:00:00"),
     timeframe: ["10:00", "11:30"],
     status: "upcoming",
-    liveComments: [
+    messages: [
       { author: "Alice", content: "We need more buses during rush hour." },
       { author: "Bob", content: "Trains are always delayed—why?" },
       {
@@ -120,13 +120,13 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     ],
   },
   {
-    id: "3",
+    id: "recorded",
     title: "Park Beautification Drive",
     description: "Planning to improve landscaping and amenities in city parks.",
     date: new Date("2024-12-15T09:00:00"),
     timeframe: ["09:00", "10:30"],
     status: "recorded",
-    liveComments: [
+    messages: [
       { author: "Alice", content: "Let’s plant more native species." },
       { author: "Bob", content: "Install more benches and picnic tables." },
       { author: "Charlie", content: "Can we add a skatepark?" },
@@ -173,7 +173,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-18T19:00:00"),
     timeframe: ["19:00", "20:30"],
     status: "live",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "Some lights stay on during the day—waste of energy.",
@@ -235,7 +235,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-20T14:00:00"),
     timeframe: ["14:00", "15:30"],
     status: "upcoming",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "Limit construction work to specific hours.",
@@ -303,7 +303,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-22T11:00:00"),
     timeframe: ["11:00", "12:30"],
     status: "recorded",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "We need more recycling bins in public areas.",
@@ -371,7 +371,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-24T09:30:00"),
     timeframe: ["09:30", "11:00"],
     status: "live",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "We should focus on planting trees native to the region.",
@@ -427,7 +427,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-26T16:00:00"),
     timeframe: ["16:00", "17:30"],
     status: "upcoming",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "Encourage carpooling with dedicated lanes.",
@@ -489,7 +489,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-28T14:30:00"),
     timeframe: ["14:30", "16:00"],
     status: "recorded",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "Focus on reducing chemical discharge into water bodies.",
@@ -545,7 +545,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-30T20:00:00"),
     timeframe: ["20:00", "22:00"],
     status: "live",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "Encourage laser light shows instead of fireworks.",
@@ -607,7 +607,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2025-01-03T14:00:00"),
     timeframe: ["14:00", "15:30"],
     status: "upcoming",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "Improve drainage systems in flood-prone zones.",
@@ -657,7 +657,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2025-01-06T10:30:00"),
     timeframe: ["10:30", "12:00"],
     status: "recorded",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "Install air quality monitoring stations citywide.",
@@ -710,7 +710,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2025-01-08T08:30:00"),
     timeframe: ["08:30", "10:00"],
     status: "live",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "Install more bike stations near transit hubs.",
@@ -760,7 +760,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2025-01-10T13:00:00"),
     timeframe: ["13:00", "14:30"],
     status: "upcoming",
-    liveComments: [
+    messages: [
       {
         author: "Alice",
         content: "Focus on implementing smart traffic lights.",
@@ -807,7 +807,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2025-01-12T17:00:00"),
     timeframe: ["17:00", "18:30"],
     status: "recorded",
-    liveComments: [
+    messages: [
       { author: "Alice", content: "Install more emergency alert systems." },
       {
         author: "Bob",

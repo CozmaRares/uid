@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { format, formatDistanceToNow } from "date-fns";
+import { enUS } from "date-fns/locale";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -21,4 +22,8 @@ export function formatRelativeDate(targetDate: Date) {
 
 export function formatDateWithDay(targetDate: Date) {
   return format(targetDate, "eeee, MMMM d, yyyy");
+}
+
+export function formatDateWithHour(targetDate: Date) {
+  return format(targetDate, "do MMM yyyy • h:mm a", { locale: enUS });
 }

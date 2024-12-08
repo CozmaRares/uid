@@ -9,7 +9,7 @@ export const Route = createLazyFileRoute("/vote/all")({
 
 function RouteComponent() {
   return (
-    <main>
+    <main className="bounded-container">
       <TitleContainer
         variant="page"
         className="mb-8"
