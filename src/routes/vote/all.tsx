@@ -1,24 +1,21 @@
-import { TitleContainer, Title } from "@/components/Title";
-import { createLazyFileRoute, Link } from "@tanstack/react-router";
-import { votes } from "@/lib/data/votes";
-import { Card } from "@/components/ui/card";
+import { TitleContainer, Title } from '@/components/Title'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { votes } from '@/lib/data/votes'
+import { Card } from '@/components/ui/card'
 
-export const Route = createLazyFileRoute("/vote/all")({
+export const Route = createFileRoute('/vote/all')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
   return (
     <main className="bounded-container">
-      <TitleContainer
-        variant="page"
-        className="mb-8"
-      >
+      <TitleContainer variant="page" className="mb-8">
         <Title>Browse Votes</Title>
       </TitleContainer>
       <section className="grid gap-4 md:grid-cols-2">
         <ul className="contents">
-          {votes.map(vote => (
+          {votes.map((vote) => (
             <li key={vote.id}>
               <Card className="h-full w-full">
                 <Link
@@ -33,5 +30,5 @@ function RouteComponent() {
         </ul>
       </section>
     </main>
-  );
+  )
 }

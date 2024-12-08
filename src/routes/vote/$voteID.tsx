@@ -1,13 +1,13 @@
-import { TitleContainer, Title, TitleDescription } from "@/components/Title";
-import NotFound from "@/components/NotFound";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { votes, Comment } from "@/lib/data/votes";
-import { cn, formatRelativeDate, formatCompactNumber } from "@/lib/utils";
-import { createLazyFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { toast } from "sonner";
+import { TitleContainer, Title, TitleDescription } from '@/components/Title'
+import NotFound from '@/components/NotFound'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Progress } from '@/components/ui/progress'
+import { votes, Comment } from '@/lib/data/votes'
+import { cn, formatRelativeDate, formatCompactNumber } from '@/lib/utils'
+import { createFileRoute } from '@tanstack/react-router'
+import { useState } from 'react'
+import { toast } from 'sonner'
 import {
   Dialog,
   DialogContent,
@@ -15,10 +15,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '@/components/ui/dialog'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
@@ -26,47 +26,44 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
-import { ThumbsDown, ThumbsUp } from "lucide-react";
+} from '@/components/ui/form'
+import { Textarea } from '@/components/ui/textarea'
+import { ThumbsDown, ThumbsUp } from 'lucide-react'
 
-export const Route = createLazyFileRoute("/vote/$voteID")({
+export const Route = createFileRoute('/vote/$voteID')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const { voteID } = Route.useParams();
-  const vote = votes.find(vote => vote.id === voteID);
-  const [votedID, setVotedID] = useState<string | null>(null);
-  const [isAlternativeFormOpen, setIsAlternativeFormOpen] = useState(false);
+  const { voteID } = Route.useParams()
+  const vote = votes.find((vote) => vote.id === voteID)
+  const [votedID, setVotedID] = useState<string | null>(null)
+  const [isAlternativeFormOpen, setIsAlternativeFormOpen] = useState(false)
 
-  if (!vote) return <NotFound />;
+  if (!vote) return <NotFound />
 
   const onSubmit = (values: FormSchema) => {
-    console.log(values);
-    toast.message("Alternative solution submitted successfully.", {
-      description: "Thank you for your feedback!",
-    });
-    setIsAlternativeFormOpen(false);
-  };
+    console.log(values)
+    toast.message('Alternative solution submitted successfully.', {
+      description: 'Thank you for your feedback!',
+    })
+    setIsAlternativeFormOpen(false)
+  }
 
-  const hasVoted = votedID !== null;
-  const hasVotedCurrentVote = votedID === vote.id;
+  const hasVoted = votedID !== null
+  const hasVotedCurrentVote = votedID === vote.id
 
   return (
     <main key={votedID} className="bounded-container space-y-8">
       <section className="space-y-8">
         <div>
-          <TitleContainer
-            variant="page"
-            className="border-b-0"
-          >
+          <TitleContainer variant="page" className="border-b-0">
             <Title>{vote.title}</Title>
           </TitleContainer>
           <div>
             <span className="text-lg font-medium">
               {formatCompactNumber(vote.numVotes)}
-            </span>{" "}
+            </span>{' '}
             <span className="opacity-80">
               votes out of {formatCompactNumber(vote.necessaryVotes)}
             </span>
@@ -78,12 +75,12 @@ function RouteComponent() {
           <div className="flex flex-row justify-between gap-4 md:justify-end">
             <Dialog
               open={isAlternativeFormOpen}
-              onOpenChange={open => setIsAlternativeFormOpen(open)}
+              onOpenChange={(open) => setIsAlternativeFormOpen(open)}
             >
               <DialogTrigger
                 className={cn(
-                  buttonVariants({ variant: "outline" }),
-                  "rounded-none rounded-tr-xl border-b-0 border-l-0 border-primary md:rounded-t-xl md:border-l",
+                  buttonVariants({ variant: 'outline' }),
+                  'rounded-none rounded-tr-xl border-b-0 border-l-0 border-primary md:rounded-t-xl md:border-l',
                 )}
               >
                 Propose alternative
@@ -100,21 +97,21 @@ function RouteComponent() {
             </Dialog>
             <Button
               className={cn(
-                "w-[20ch] rounded-none rounded-tl-xl text-base",
+                'w-[20ch] rounded-none rounded-tl-xl text-base',
                 hasVoted &&
-                  "cursor-auto bg-secondary hover:bg-secondary disabled:opacity-100",
+                  'cursor-auto bg-secondary hover:bg-secondary disabled:opacity-100',
               )}
               disabled={hasVoted}
               onClick={() => {
-                setVotedID(vote.id);
-                toast.success("Thank you for voting!");
+                setVotedID(vote.id)
+                toast.success('Thank you for voting!')
               }}
             >
               {hasVotedCurrentVote
-                ? "Signed"
+                ? 'Signed'
                 : hasVoted
-                  ? "Already voted"
-                  : "Sign here"}
+                  ? 'Already voted'
+                  : 'Sign here'}
             </Button>
           </div>
         </Card>
@@ -126,8 +123,8 @@ function RouteComponent() {
         <ul className="space-y-3">
           {vote.alternatives ? (
             vote.alternatives.map((alternative, idx) => {
-              const id = vote.id + idx;
-              const hasVotedAlternative = votedID === id;
+              const id = vote.id + idx
+              const hasVotedAlternative = votedID === id
 
               return (
                 <li key={id}>
@@ -140,25 +137,25 @@ function RouteComponent() {
                     </div>
                     <Button
                       className={cn(
-                        "w-[25ch]",
+                        'w-[25ch]',
                         hasVoted &&
-                          "cursor-auto bg-secondary hover:bg-secondary disabled:opacity-100",
+                          'cursor-auto bg-secondary hover:bg-secondary disabled:opacity-100',
                       )}
                       disabled={hasVoted}
                       onClick={() => {
-                        setVotedID(id);
-                        toast.success("Thank you for voting!");
+                        setVotedID(id)
+                        toast.success('Thank you for voting!')
                       }}
                     >
                       {hasVotedAlternative
-                        ? "Signed"
+                        ? 'Signed'
                         : hasVoted
-                          ? "Already voted"
-                          : "Sign here"}
+                          ? 'Already voted'
+                          : 'Sign here'}
                     </Button>
                   </Card>
                 </li>
-              );
+              )
             })
           ) : (
             <div>No alternatives yet</div>
@@ -183,30 +180,27 @@ function RouteComponent() {
         </ul>
       </section>
     </main>
-  );
+  )
 }
 
 const formSchema = z.object({
   solution: z.string().min(1),
-});
-type FormSchema = z.infer<typeof formSchema>;
+})
+type FormSchema = z.infer<typeof formSchema>
 
 type FormProps = {
-  onSubmit: (values: FormSchema) => void;
-};
+  onSubmit: (values: FormSchema) => void
+}
 
 function AlternativeForm({ onSubmit }: FormProps) {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: { solution: "" },
-  });
+    defaultValues: { solution: '' },
+  })
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="contents"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="contents">
         <FormField
           control={form.control}
           name="solution"
@@ -224,21 +218,18 @@ function AlternativeForm({ onSubmit }: FormProps) {
             </FormItem>
           )}
         />
-        <Button
-          type="submit"
-          className="w-full"
-        >
+        <Button type="submit" className="w-full">
           Submit
         </Button>
       </form>
     </Form>
-  );
+  )
 }
 
-type IndividualCommentProps = { comment: Comment };
+type IndividualCommentProps = { comment: Comment }
 
 function IndividualComment({ comment }: IndividualCommentProps) {
-  const [like, setLike] = useState(0);
+  const [like, setLike] = useState(0)
 
   return (
     <Card className="px-4 py-2">
@@ -252,28 +243,28 @@ function IndividualComment({ comment }: IndividualCommentProps) {
       <div className="flex flex-row items-center gap-3 text-sm">
         <div className="flex flex-row items-center gap-1.5">
           <button
-            className={cn("focus-ring p-0.5", like == 1 && "text-secondary")}
-            onClick={() => setLike(prevLike => (prevLike == 1 ? 0 : 1))}
+            className={cn('focus-ring p-0.5', like == 1 && 'text-secondary')}
+            onClick={() => setLike((prevLike) => (prevLike == 1 ? 0 : 1))}
           >
             <ThumbsUp
               width="1em"
               height="1em"
-              fill={like == 1 ? "currentColor" : "none"}
+              fill={like == 1 ? 'currentColor' : 'none'}
             />
           </button>
           {comment.likes}
         </div>
         <button
-          className={cn("focus-ring p-0.5", like == -1 && "text-primary")}
-          onClick={() => setLike(prevLike => (prevLike == -1 ? 0 : -1))}
+          className={cn('focus-ring p-0.5', like == -1 && 'text-primary')}
+          onClick={() => setLike((prevLike) => (prevLike == -1 ? 0 : -1))}
         >
           <ThumbsDown
             width="1em"
             height="1em"
-            fill={like == -1 ? "currentColor" : "none"}
+            fill={like == -1 ? 'currentColor' : 'none'}
           />
         </button>
       </div>
     </Card>
-  );
+  )
 }

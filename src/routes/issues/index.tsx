@@ -1,9 +1,9 @@
-import { Title, TitleContainer, TitleDescription } from "@/components/Title";
-import { createLazyFileRoute } from "@tanstack/react-router";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
+import { Title, TitleContainer, TitleDescription } from '@/components/Title'
+import { createFileRoute } from '@tanstack/react-router'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -11,14 +11,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { toast } from 'sonner'
 
-export const Route = createLazyFileRoute("/issues/")({
+export const Route = createFileRoute('/issues/')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
   return (
@@ -42,41 +42,38 @@ function RouteComponent() {
         </div>
       </div>
     </main>
-  );
+  )
 }
 
 const formSchema = z.object({
-  firstName: z.string().min(1, "required"),
-  lastName: z.string().min(1, "required"),
+  firstName: z.string().min(1, 'required'),
+  lastName: z.string().min(1, 'required'),
   email: z.string().email(),
-  issue: z.string().min(1, "required"),
-});
-type FormSchema = z.infer<typeof formSchema>;
+  issue: z.string().min(1, 'required'),
+})
+type FormSchema = z.infer<typeof formSchema>
 
 function ReportForm() {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      lastName: "",
-      firstName: "",
-      email: "",
-      issue: "",
+      lastName: '',
+      firstName: '',
+      email: '',
+      issue: '',
     },
-  });
+  })
 
   const onSubmit = (values: FormSchema) => {
-    console.log(values);
-    toast.message("Issue submitted successfully.", {
-      description: "Thank you for your feedback!",
-    });
-  };
+    console.log(values)
+    toast.message('Issue submitted successfully.', {
+      description: 'Thank you for your feedback!',
+    })
+  }
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="firstName"
@@ -87,10 +84,7 @@ function ReportForm() {
                 <FormMessage className="text-sm leading-none" />
               </div>
               <FormControl>
-                <Input
-                  placeholder="Ion"
-                  {...field}
-                />
+                <Input placeholder="Ion" {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -105,10 +99,7 @@ function ReportForm() {
                 <FormMessage className="text-sm leading-none" />
               </div>
               <FormControl>
-                <Input
-                  placeholder="Popescu"
-                  {...field}
-                />
+                <Input placeholder="Popescu" {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -123,10 +114,7 @@ function ReportForm() {
                 <FormMessage className="text-sm leading-none" />
               </div>
               <FormControl>
-                <Input
-                  placeholder="ion.popescu@gmail.com"
-                  {...field}
-                />
+                <Input placeholder="ion.popescu@gmail.com" {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -150,13 +138,10 @@ function ReportForm() {
             </FormItem>
           )}
         />
-        <Button
-          type="submit"
-          className="w-full"
-        >
+        <Button type="submit" className="w-full">
           Submit
         </Button>
       </form>
     </Form>
-  );
+  )
 }

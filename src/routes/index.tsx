@@ -1,23 +1,20 @@
-import { buttonVariants } from "@/components/ui/button";
-import { createLazyFileRoute, Link } from "@tanstack/react-router";
-import activityImage from "@/assets/activity-image.png";
-import { cn, formatDateWithHour } from "@/lib/utils";
-import { TitleContainer, Title } from "@/components/Title";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Clock, MapPin, Users } from "lucide-react";
+import { buttonVariants } from '@/components/ui/button'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import activityImage from '@/assets/activity-image.png'
+import { cn, formatDateWithHour } from '@/lib/utils'
+import { TitleContainer, Title } from '@/components/Title'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
+import { Clock, MapPin, Users } from 'lucide-react'
 
-export const Route = createLazyFileRoute("/")({
+export const Route = createFileRoute('/')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
   return (
     <main className="bounded-container space-y-16">
       <header className="flex flex-col items-center justify-center gap-4 text-center">
-        <TitleContainer
-          variant="page"
-          className="border-b-0 pt-8"
-        >
+        <TitleContainer variant="page" className="border-b-0 pt-8">
           <Title>Bringing All Of Cluj Together</Title>
         </TitleContainer>
       </header>
@@ -28,7 +25,7 @@ function RouteComponent() {
               <ActivityCard
                 image={activityImage}
                 title="Central Park Garbage Pickup"
-                date={new Date("2024-11-07T09:00:00")}
+                date={new Date('2024-11-07T09:00:00')}
                 location="Central Park, Cluj-Napoca"
                 link="/"
               />
@@ -37,7 +34,7 @@ function RouteComponent() {
         </ul>
         <Link
           to="/activities"
-          className={cn(buttonVariants(), "mx-auto block w-fit")}
+          className={cn(buttonVariants(), 'mx-auto block w-fit')}
         >
           Browse Activities
         </Link>
@@ -62,16 +59,16 @@ function RouteComponent() {
         </p>
       </section>
     </main>
-  );
+  )
 }
 
 type ActivityCardProps = {
-  image: string;
-  title: string;
-  location: string;
-  date: Date;
-  link: string;
-};
+  image: string
+  title: string
+  location: string
+  date: Date
+  link: string
+}
 
 export default function ActivityCard({
   image,
@@ -83,11 +80,7 @@ export default function ActivityCard({
   return (
     <Card className="h-full w-full max-w-sm overflow-hidden">
       <div className="relative h-48 w-full">
-        <img
-          src={image}
-          alt={title}
-          className="h-full w-full object-cover"
-        />
+        <img src={image} alt={title} className="h-full w-full object-cover" />
       </div>
       <CardContent className="space-y-4 p-4">
         <div>
@@ -109,13 +102,10 @@ export default function ActivityCard({
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Link
-          className={cn(buttonVariants(), "w-full")}
-          href={link}
-        >
+        <Link className={cn(buttonVariants(), 'w-full')} href={link}>
           Apply
         </Link>
       </CardFooter>
     </Card>
-  );
+  )
 }

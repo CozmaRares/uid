@@ -1,31 +1,31 @@
-import { Title, TitleContainer } from "@/components/Title";
-import { createLazyFileRoute, Link } from "@tanstack/react-router";
-import { Meeting, meetings } from "@/lib/data/meetings";
-import { useMemo, useState } from "react";
-import { Card } from "@/components/ui/card";
-import { cn, formatDateWithDay } from "@/lib/utils";
-import { Radio, CircleFadingArrowUp, Video } from "lucide-react";
+import { Title, TitleContainer } from '@/components/Title'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { Meeting, meetings } from '@/lib/data/meetings'
+import { useMemo, useState } from 'react'
+import { Card } from '@/components/ui/card'
+import { cn, formatDateWithDay } from '@/lib/utils'
+import { Radio, CircleFadingArrowUp, Video } from 'lucide-react'
 
-export const Route = createLazyFileRoute("/meetings/")({
+export const Route = createFileRoute('/meetings/')({
   component: RouteComponent,
-});
+})
 
 const buttonClasses = {
   default:
-    "focus-ring rounded-full border border-primary px-6 py-1 hover:bg-primary/40 transition-colors",
-  active: "bg-primary text-primary-foreground hover:bg-primary",
-};
+    'focus-ring rounded-full border border-primary px-6 py-1 hover:bg-primary/40 transition-colors',
+  active: 'bg-primary text-primary-foreground hover:bg-primary',
+}
 
 function RouteComponent() {
   const [meetingsTransformer, setMeetingsTransformer] = useState<{
-    fn: (meetings: Readonly<Meeting[]>) => Readonly<Meeting[]>;
-    selected: "all" | "live" | "recorded" | "upcoming";
-  }>({ fn: noop, selected: "all" });
+    fn: (meetings: Readonly<Meeting[]>) => Readonly<Meeting[]>
+    selected: 'all' | 'live' | 'recorded' | 'upcoming'
+  }>({ fn: noop, selected: 'all' })
 
   const transformedMeetings = useMemo(
     () => meetingsTransformer.fn(meetings),
     [meetingsTransformer],
-  );
+  )
 
   return (
     <main className="space-y-8 bounded-container">
@@ -38,11 +38,11 @@ function RouteComponent() {
           <button
             className={cn(
               buttonClasses.default,
-              meetingsTransformer.selected === "all" && buttonClasses.active,
+              meetingsTransformer.selected === 'all' && buttonClasses.active,
             )}
-            disabled={meetingsTransformer.selected === "all"}
+            disabled={meetingsTransformer.selected === 'all'}
             onClick={() =>
-              setMeetingsTransformer({ fn: noop, selected: "all" })
+              setMeetingsTransformer({ fn: noop, selected: 'all' })
             }
           >
             All
@@ -50,11 +50,11 @@ function RouteComponent() {
           <button
             className={cn(
               buttonClasses.default,
-              meetingsTransformer.selected === "live" && buttonClasses.active,
+              meetingsTransformer.selected === 'live' && buttonClasses.active,
             )}
-            disabled={meetingsTransformer.selected === "live"}
+            disabled={meetingsTransformer.selected === 'live'}
             onClick={() =>
-              setMeetingsTransformer({ fn: liveMeetings, selected: "live" })
+              setMeetingsTransformer({ fn: liveMeetings, selected: 'live' })
             }
           >
             Live
@@ -62,14 +62,14 @@ function RouteComponent() {
           <button
             className={cn(
               buttonClasses.default,
-              meetingsTransformer.selected === "recorded" &&
+              meetingsTransformer.selected === 'recorded' &&
                 buttonClasses.active,
             )}
-            disabled={meetingsTransformer.selected === "recorded"}
+            disabled={meetingsTransformer.selected === 'recorded'}
             onClick={() =>
               setMeetingsTransformer({
                 fn: recordedMeetings,
-                selected: "recorded",
+                selected: 'recorded',
               })
             }
           >
@@ -78,14 +78,14 @@ function RouteComponent() {
           <button
             className={cn(
               buttonClasses.default,
-              meetingsTransformer.selected === "upcoming" &&
+              meetingsTransformer.selected === 'upcoming' &&
                 buttonClasses.active,
             )}
-            disabled={meetingsTransformer.selected === "upcoming"}
+            disabled={meetingsTransformer.selected === 'upcoming'}
             onClick={() =>
               setMeetingsTransformer({
                 fn: upcomingMeetings,
-                selected: "upcoming",
+                selected: 'upcoming',
               })
             }
           >
@@ -95,7 +95,7 @@ function RouteComponent() {
       </TitleContainer>
       <section>
         <ul className="grid gap-4 md:grid-cols-2">
-          {transformedMeetings.map(meeting => (
+          {transformedMeetings.map((meeting) => (
             <li key={meeting.id}>
               <MeetingCard meeting={meeting} />
             </li>
@@ -103,12 +103,12 @@ function RouteComponent() {
         </ul>
       </section>
     </main>
-  );
+  )
 }
 
 type CardProps = {
-  meeting: Meeting;
-};
+  meeting: Meeting
+}
 
 function MeetingCard({ meeting }: CardProps) {
   return (
@@ -118,25 +118,14 @@ function MeetingCard({ meeting }: CardProps) {
         className="block h-full w-full space-y-1 p-3 hover:bg-accent/40"
       >
         <div className="flex items-center gap-2">
-          <span
-            className="text-2xl"
-            aria-label={meeting.status}
-          >
-            {meeting.status === "live" && (
-              <Radio
-                width="1em"
-                height="1em"
-                className="text-red-600"
-              />
+          <span className="text-2xl" aria-label={meeting.status}>
+            {meeting.status === 'live' && (
+              <Radio width="1em" height="1em" className="text-red-600" />
             )}
-            {meeting.status === "recorded" && (
-              <Video
-                width="1em"
-                height="1em"
-                className="text-primary"
-              />
+            {meeting.status === 'recorded' && (
+              <Video width="1em" height="1em" className="text-primary" />
             )}
-            {meeting.status === "upcoming" && (
+            {meeting.status === 'upcoming' && (
               <CircleFadingArrowUp
                 width="1em"
                 height="1em"
@@ -155,21 +144,21 @@ function MeetingCard({ meeting }: CardProps) {
         <p>{meeting.description}</p>
       </Link>
     </Card>
-  );
+  )
 }
 
 function noop(meetings: Readonly<Meeting[]>) {
-  return meetings;
+  return meetings
 }
 
 function liveMeetings(meetings: Readonly<Meeting[]>) {
-  return meetings.filter(meeting => meeting.status === "live");
+  return meetings.filter((meeting) => meeting.status === 'live')
 }
 
 function recordedMeetings(meetings: Readonly<Meeting[]>) {
-  return meetings.filter(meeting => meeting.status === "recorded");
+  return meetings.filter((meeting) => meeting.status === 'recorded')
 }
 
 function upcomingMeetings(meetings: Readonly<Meeting[]>) {
-  return meetings.filter(meeting => meeting.status === "upcoming");
+  return meetings.filter((meeting) => meeting.status === 'upcoming')
 }
