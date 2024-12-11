@@ -154,7 +154,7 @@ function ChatInput({ status, onSubmit }: ChatInputProps) {
           name="message"
           render={({ field }) => (
             <FormItem className="flex-grow space-y-0">
-              <FormLabel className="sr-only">Alternative Solution</FormLabel>
+              <FormLabel className="sr-only">Chat Input</FormLabel>
               <FormControl>
                 <Input
                   type="text"

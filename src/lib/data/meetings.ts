@@ -80,44 +80,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-12T10:00:00"),
     timeframe: ["10:00", "11:30"],
     status: "upcoming",
-    messages: [
-      { author: "Alice", content: "We need more buses during rush hour." },
-      { author: "Bob", content: "Trains are always delayed—why?" },
-      {
-        author: "Charlie",
-        content: "Introduce express routes for key locations.",
-      },
-      {
-        author: "Dana",
-        content: "Provide real-time tracking for public transport.",
-      },
-      {
-        author: "Eve",
-        content: "Can we increase the number of routes in suburbs?",
-      },
-      { author: "Frank", content: "Invest in eco-friendly buses." },
-      {
-        author: "Grace",
-        content: "Work with private operators for shared services.",
-      },
-      { author: "Hank", content: "Public feedback should be prioritized." },
-      {
-        author: "Ivy",
-        content: "More bike racks at train stations would help.",
-      },
-      { author: "Jack", content: "Introduce discounted passes for students." },
-      { author: "Kim", content: "Safety at bus stops needs improvement." },
-      { author: "Leo", content: "Expand the metro network." },
-      {
-        author: "Mona",
-        content: "Provide better connectivity between modes of transport.",
-      },
-      { author: "Nina", content: "Are there any plans for high-speed trains?" },
-      {
-        author: "Oscar",
-        content: "Let’s use data analytics for better scheduling.",
-      },
-    ],
+    messages: [],
   },
   {
     id: "recorded",
@@ -235,65 +198,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-20T14:00:00"),
     timeframe: ["14:00", "15:30"],
     status: "upcoming",
-    messages: [
-      {
-        author: "Alice",
-        content: "Limit construction work to specific hours.",
-      },
-      {
-        author: "Bob",
-        content: "Can we enforce stricter vehicle noise regulations?",
-      },
-      {
-        author: "Charlie",
-        content: "Encourage businesses to use quieter machinery.",
-      },
-      {
-        author: "Dana",
-        content: "Create awareness campaigns about noise pollution.",
-      },
-      {
-        author: "Eve",
-        content: "Do we have decibel measurement systems in place?",
-      },
-      { author: "Frank", content: "Add noise barriers near highways." },
-      {
-        author: "Grace",
-        content: "Encourage planting trees as natural noise buffers.",
-      },
-      {
-        author: "Hank",
-        content: "Implement fines for honking in no-honk zones.",
-      },
-      {
-        author: "Ivy",
-        content: "Can we encourage quieter festivals and celebrations?",
-      },
-      {
-        author: "Jack",
-        content: "Workshops on reducing noise at workplaces could help.",
-      },
-      {
-        author: "Kim",
-        content: "Focus on reducing noise near hospitals and schools.",
-      },
-      {
-        author: "Leo",
-        content: "Promote the use of quieter construction equipment.",
-      },
-      {
-        author: "Mona",
-        content: "What about zoning restrictions for loud businesses?",
-      },
-      {
-        author: "Nina",
-        content: "Introduce soundproofing guidelines for new buildings.",
-      },
-      {
-        author: "Oscar",
-        content: "Engage citizens to report excessive noise complaints.",
-      },
-    ],
+    messages: [],
   },
   {
     id: "6",
@@ -427,59 +332,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2024-12-26T16:00:00"),
     timeframe: ["16:00", "17:30"],
     status: "upcoming",
-    messages: [
-      {
-        author: "Alice",
-        content: "Encourage carpooling with dedicated lanes.",
-      },
-      {
-        author: "Bob",
-        content: "Introduce congestion charges during peak hours.",
-      },
-      { author: "Charlie", content: "Can we optimize traffic light timings?" },
-      {
-        author: "Dana",
-        content: "Promote remote work to reduce peak-hour traffic.",
-      },
-      { author: "Eve", content: "Expand public transportation options." },
-      {
-        author: "Frank",
-        content: "Create more one-way streets to improve flow.",
-      },
-      {
-        author: "Grace",
-        content: "Consider building more pedestrian overpasses.",
-      },
-      {
-        author: "Hank",
-        content: "Use AI to predict and manage traffic patterns.",
-      },
-      {
-        author: "Ivy",
-        content: "Can we limit large vehicles during peak hours?",
-      },
-      {
-        author: "Jack",
-        content: "Offer tax breaks for using electric vehicles.",
-      },
-      {
-        author: "Kim",
-        content: "Add more bike lanes to reduce car dependency.",
-      },
-      { author: "Leo", content: "Host a trial day without private vehicles." },
-      {
-        author: "Mona",
-        content: "Encourage staggered work hours for businesses.",
-      },
-      {
-        author: "Nina",
-        content: "Focus on educating drivers about traffic rules.",
-      },
-      {
-        author: "Oscar",
-        content: "Install more roundabouts to reduce signal delays.",
-      },
-    ],
+    messages: [],
   },
   {
     id: "9",
@@ -607,47 +460,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2025-01-03T14:00:00"),
     timeframe: ["14:00", "15:30"],
     status: "upcoming",
-    messages: [
-      {
-        author: "Alice",
-        content: "Improve drainage systems in flood-prone zones.",
-      },
-      { author: "Bob", content: "Build more rainwater harvesting structures." },
-      {
-        author: "Charlie",
-        content: "Focus on cleaning and maintaining storm drains.",
-      },
-      { author: "Dana", content: "Introduce flood insurance for residents." },
-      {
-        author: "Eve",
-        content: "Encourage permeable pavements to absorb water.",
-      },
-      { author: "Frank", content: "Construct embankments along rivers." },
-      { author: "Grace", content: "Use real-time flood monitoring systems." },
-      { author: "Hank", content: "Educate citizens on flood preparedness." },
-      { author: "Ivy", content: "Plant more trees to reduce surface runoff." },
-      { author: "Jack", content: "Can we implement smart water management?" },
-      {
-        author: "Kim",
-        content: "Focus on collaboration with meteorological departments.",
-      },
-      {
-        author: "Leo",
-        content: "Evaluate the success of flood measures in other cities.",
-      },
-      {
-        author: "Mona",
-        content: "Involve private companies for quicker execution.",
-      },
-      {
-        author: "Nina",
-        content: "Map flood hotspots for targeted interventions.",
-      },
-      {
-        author: "Oscar",
-        content: "Host drills to prepare residents for emergencies.",
-      },
-    ],
+    messages: [],
   },
   {
     id: "12",
@@ -760,44 +573,7 @@ export const meetings: Readonly<Array<Meeting>> = Object.freeze([
     date: new Date("2025-01-10T13:00:00"),
     timeframe: ["13:00", "14:30"],
     status: "upcoming",
-    messages: [
-      {
-        author: "Alice",
-        content: "Focus on implementing smart traffic lights.",
-      },
-      { author: "Bob", content: "Install city-wide free Wi-Fi zones." },
-      {
-        author: "Charlie",
-        content: "Develop a centralized app for city services.",
-      },
-      { author: "Dana", content: "Can we introduce smart waste bins?" },
-      { author: "Eve", content: "What about smart parking solutions?" },
-      { author: "Frank", content: "Upgrade public surveillance for safety." },
-      {
-        author: "Grace",
-        content: "Focus on integrating IoT devices city-wide.",
-      },
-      {
-        author: "Hank",
-        content: "Educate citizens on using smart systems effectively.",
-      },
-      { author: "Ivy", content: "Monitor energy usage with smart meters." },
-      { author: "Jack", content: "Can we include renewable energy projects?" },
-      { author: "Kim", content: "What about cybersecurity for smart systems?" },
-      { author: "Leo", content: "Develop a city dashboard for transparency." },
-      {
-        author: "Mona",
-        content: "Use AI for predictive maintenance of utilities.",
-      },
-      {
-        author: "Nina",
-        content: "Include smart solutions for water conservation.",
-      },
-      {
-        author: "Oscar",
-        content: "Host pilot projects before full-scale deployment.",
-      },
-    ],
+    messages: [],
   },
   {
     id: "15",

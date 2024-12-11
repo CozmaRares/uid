@@ -116,7 +116,7 @@ function RouteComponent() {
           </div>
         </Card>
       </section>
-      <section>
+      <section id="alternatives">
         <TitleContainer variant="section">
           <Title>Alternatives</Title>
         </TitleContainer>
@@ -162,7 +162,7 @@ function RouteComponent() {
           )}
         </ul>
       </section>
-      <section>
+      <section id="comments">
         <TitleContainer variant="section">
           <Title>Comments</Title>
           <TitleDescription>Share your thoughts</TitleDescription>
